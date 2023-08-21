@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0
 pragma solidity >=0.4.21 <0.9.0;
 pragma experimental ABIEncoderV2;
 
@@ -55,7 +56,8 @@ contract SupplyChainLifecycle is Producer, Retailer, Distributor {
    constructor() public payable {
        productID = 0;
    }
- /*Set of functions to update product statuses.*/
+
+   /*Set of functions to update product statuses.*/
    
    //Accessible by - 
    //       - Producer
@@ -146,4 +148,13 @@ contract SupplyChainLifecycle is Producer, Retailer, Distributor {
         emit Sold(prodId);
    }
 
+    /* Getters. */
+    
+    function getProductDetails(uint prodId) public view returns (Product memory) {
+       return products[prodId];
+    } 
+
+    function getAllProductDetails() public view returns (Product[] memory) {
+       return products;
+    } 
 }
