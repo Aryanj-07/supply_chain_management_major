@@ -16,5 +16,8 @@ contract Consumer {
         require(!consumers.isExistingUser(newConsumer), "Consumer with this address already exists!");
         consumers.addUser(newConsumer);
     }
+    function isConsumer() public view returns (bool) {
+    return consumers.isExistingUser(msg.sender);
+  }
 
 }
