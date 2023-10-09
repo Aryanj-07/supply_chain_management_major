@@ -9,10 +9,10 @@ Tools and versions used -
 
 Todos-
 
-1. consumer.sol
-2. distributer.sol
-3. magrations.sol
-4. producers.sol
-5. retailer.sol
-6. supply chain lifecycle.sol
-7. users.sol
+1. consumer.sol \/
+2. distributer.sol \/
+3. magrations.sol \/
+4. producers.sol \/
+5. retailer.sol \/
+6. supply chain lifecycle.sol \/
+7. users.sol \/
