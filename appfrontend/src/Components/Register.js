@@ -25,7 +25,7 @@ import "../css/NewUser.css";
  *  - Distributors, 
  *  - Retailers.
  * 
- * @author syuki
+ * 
  */
 const Register = ({drizzle, drizzleState, isAuthenticated}) => {
 

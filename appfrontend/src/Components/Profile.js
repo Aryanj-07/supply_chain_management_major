@@ -9,7 +9,7 @@ import "../css/Profile.css";
 /**
  * Component for the profile page. Fetches profile details from the registered user's account.
  * *
- * @author syuki
+ * 
  */
 export default ({ drizzle, drizzleState, userType, close, open, anchorEl, profilePicturePath }) => {
 

@@ -36,7 +36,7 @@ const cols = [
  * Renders the main page - Product Batches, for registered users.
  * Handles toggling child components and interacts with the contracts to fetch product details.
  * 
- * @author syuki
+ * 
  */
 export default class Home extends React.Component {
 

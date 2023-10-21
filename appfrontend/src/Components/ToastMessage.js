@@ -8,7 +8,7 @@ import CloseIcon from '@material-ui/icons/Close';
 /**
  * Component to show a toast/snackbar at the bottom of the screen after every transaction.
  * 
- * @author syuki
+ * 
  */
 export default class ToastMessage extends React.Component {
     render() {
