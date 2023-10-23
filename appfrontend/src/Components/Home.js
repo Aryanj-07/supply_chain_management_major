@@ -264,3 +264,155 @@ export default class Home extends React.Component {
         }
         return string;
     }
+
+
+
+    render() {
+        if (this.props.isAuthenticated || this.props.isSuccessfullyRegistered) {
+            //Updates registration state globally to render header and footer.
+            this.props.updateAuth(true);
+
+            //Updates user type for new user registration.
+            if (this.props.newUserType) {
+                this.props.updateUserType(this.props.newUserType);
+            }
+
+            const SupplyChainLifecycle = this.getLifeCycleContract();
+            const rows = this.getProductDetails(SupplyChainLifecycle);
+            const activeBatches = this.fetchActiveBatches(rows);
+            const previousBatches = this.fetchPreviousBatches(rows);
+
+            return (
+                <div className="main-body" color="primary">
+                    <Paper className="app" style={{ backgroundColor: "#92869f63", minHeight: 600 }} elevation={3}>
+                        <AppBar
+                            id="app-bar"
+                            position="static"
+                            elevation={0}
+                        >
+                            <Tabs
+                                variant="fullWidth"
+                                value={this.state.tabValue}
+                                TabIndicatorProps={{ style: { background: "#FBFAFA" } }}
+                                onChange={(event, value) => this.handleTabChange(event, value)}
+                            >
+                                <Tab label="View Active Batches" />
+                                <Tab label="View Sold Batches" />
+                            </Tabs>
+                        </AppBar>
+
+                        <TabPanel value={this.state.tabValue} index={0} count={2}>
+                            {this.props.userType == USER_TYPES[0] ?
+                                <div>
+                                    <Button
+                                        variant="contained"
+                                        color="secondary"
+                                        onClick={() => this.showAddBatchPopUp()}>
+                                        <AddIcon style={{ paddingRight: "4px", paddingTop: "1px" }} />Produce a New Batch
+                                    </Button>
+                                    <br />
+                                    <br />
+                                </div>
+                                : null
+                            }
+                            <BatchTable
+                                rows={activeBatches}
+                                cols={cols}
+                                userType={this.props.userType}
+                                toggleBatchDetailsPopUp={(prodRow) => this.toggleBatchDetailsPopUp(prodRow)}
+                                showConfirmActionPopUp={(action, id) => this.showConfirmActionPopUp(action, id)}
+                                emptyRowsMessage={this.fetchEmptyTableString()}
+                            />
+                        </TabPanel>
+
+                        <TabPanel value={this.state.tabValue} index={1} count={2}>
+                            <BatchTable
+                                rows={previousBatches}
+                                cols={cols}
+                                toggleBatchDetailsPopUp={(prodRow) => this.toggleBatchDetailsPopUp(prodRow)}
+                                showConfirmActionPopUp={(action, id) => this.showConfirmActionPopUp(action, id)}
+                                emptyRowsMessage="No sold batches yet. Try selling a batch."
+                            />
+                        </TabPanel>
+
+                        {/* Pop-ups & Toasts*/}
+
+                        {this.state.showAddBatch ?
+                            <ErrorBoundary
+                                hideLoaderScreen={() => this.hideLoader()}
+                                hideDialog={() => this.hideAddBatchPopUp()}
+                                setTransactionSuccess={(status) => this.setTransactionSuccess(status)}
+                            >
+                                <ProductBatchForm
+                                    open={this.state.showAddBatch}
+                                    closePopup={() => this.hideAddBatchPopUp()}
+                                    contractName={this.props.drizzle.contracts.SupplyChainLifecycle}
+                                    currentAddress={this.props.drizzleState.accounts[0]}
+                                    showLoaderScreen={() => this.showLoader()}
+                                    hideLoaderScreen={() => this.hideLoader()}
+                                    setTransactionSuccess={(status) => this.setTransactionSuccess(status)}
+                                />
+                            </ErrorBoundary>
+                            : null
+                        }
+
+                        {this.state.showBatchDetails ?
+                            <ProductDetails
+                                open={this.state.showBatchDetails}
+                                closePopup={() => this.toggleBatchDetailsPopUp()}
+                                product={this.state.productRow} />
+                            : null
+                        }
+
+                        {this.state.showConfirmAction ?
+                            <ErrorBoundary
+                                hideLoaderScreen={() => this.hideLoader()}
+                                hideDialog={() => this.hideConfirmActionPopUp()}
+                                setTransactionSuccess={(status) => this.setTransactionSuccess(status)}
+                            >
+                                <PerformStatusAction
+                                    open={this.state.showConfirmAction}
+                                    closePopup={() => this.hideConfirmActionPopUp()}
+                                    contractName={this.props.drizzle.contracts.SupplyChainLifecycle}
+                                    action={this.state.actionState}
+                                    productId={this.state.productId}
+                                    currentAddress={this.props.drizzleState.accounts[0]}
+                                    showLoaderScreen={() => this.showLoader()}
+                                    hideLoaderScreen={() => this.hideLoader()}
+                                    setTransactionSuccess={(status) => this.setTransactionSuccess(status)}
+                                />
+                            </ErrorBoundary>
+                            : null
+                        }
+
+                        {this.state.transactionSuccess ?
+                            <ToastMessage
+                                open={this.state.transactionSuccess}
+                                toastMessage="Transaction successful!"
+                                closeToastMessage={() => this.closeToastMessage()}
+                                bgColor='#9986af'
+                            />
+                            : null
+                        }
+                        {this.state.transactionSuccess === false ?
+                            <ToastMessage
+                                open={this.state.transactionSuccess === false}
+                                toastMessage="Transaction failed! Please check your connection and try again."
+                                bgColor='#eb535e'
+                                closeToastMessage={() => this.closeToastMessage()}
+                            />
+                            : null
+                        }
+
+                        <CircularPageLoader
+                            open={this.state.showLoader}
+                        />
+
+                    </Paper>
+                </div>
+            )
+        } else {
+            return <Navigate to="/new-user" replace />;
+        }
+    };
+};
