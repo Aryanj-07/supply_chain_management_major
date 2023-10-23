@@ -114,3 +114,153 @@ export default class Home extends React.Component {
         }
         return statusAction;
     }
+
+    //Maps the required product statuses for each user type.
+    fetchProductStatuses(productDetails) {
+        let productStatuses = PRODUCT_STATUSES[productDetails["productStatus"]];
+        //Abstracts all statuses after payment to SOLD. 
+        if (this.props.userType == USER_TYPES[0]) {
+            if (productDetails["productStatus"] > 2) {
+                productStatuses = PRODUCT_STATUSES[7];
+            }
+        }
+        if (this.props.userType == USER_TYPES[1]) {
+            //Manages payment statuses - PAID and SOLD, depending on the user type.
+            if (productDetails["productStatus"] == 6
+                && productDetails["retailerAddresses"] == this.state.addressZero) {
+                productStatuses = PRODUCT_STATUSES[6];
+            }
+            //Abstracts all statuses after payment to SOLD. 
+            else if (productDetails["productStatus"] > 4
+                && productDetails["retailerAddresses"] != this.state.addressZero) {
+                productStatuses = PRODUCT_STATUSES[7];
+            }
+        }
+        return productStatuses;
+    }
+
+    convertToDecimal(number) {
+        return number / 100;
+    }
+
+    getProductDetails(contractName) {
+        const productDetailsArray = contractName.getAllProductDetails[this.state.dataKey];
+        let rows = [];
+        if (productDetailsArray && productDetailsArray.value.length > 0) {
+            productDetailsArray.value.forEach(productDetails => {
+                const status = this.fetchProductStatuses(productDetails);
+                const action = this.fetchProductStatusActions(productDetails);
+                const newRow = {
+                    productId: productDetails["productId"],
+                    productName: productDetails["productName"],
+                    productDesc: productDetails["productDesc"],
+                    productPrice: this.convertToDecimal(productDetails["productPrice"]),
+                    productQuantity: productDetails["productQuantity"],
+                    consumerAddress: productDetails["consumerAddress"],
+                    currentUser: productDetails["currentStatusUser"],
+                    distributorAddress: productDetails["distributorAddress"],
+                    producerAddress: productDetails["producerAddress"],
+                    retailerAddresses: productDetails["retailerAddresses"],
+                    productStatus: status,
+                    action: action,
+                    disableActionButton: this.disableActionButton(action)
+                };
+                rows.push(newRow);
+            });
+        }
+        return rows;
+    }
+
+    fetchActiveBatches(rows) {
+        //Non-active batches for producers = Sold batches. 
+        if (this.props.userType == USER_TYPES[0]) {
+            return rows.filter((row) => row.productStatus != PRODUCT_STATUSES[7]).reverse();
+        }
+        //Non-active and unrelated batches for distributor = Sold batches and batches yet to be 
+        //enabled for pickup. 
+        if (this.props.userType == USER_TYPES[1]) {
+            return rows.filter((row) => row.productStatus != PRODUCT_STATUSES[0]
+                && row.productStatus != PRODUCT_STATUSES[7]).reverse();
+        }
+        //Non-active and unrelated batches for retailer = Sold batches and batches yet to be 
+        //released for shipping. 
+        if (this.props.userType == USER_TYPES[2]) {
+            return rows.filter((row) => row.productStatus != PRODUCT_STATUSES[0]
+                && row.productStatus != PRODUCT_STATUSES[1]
+                && row.productStatus != PRODUCT_STATUSES[2]
+                && row.productStatus != PRODUCT_STATUSES[7]).reverse();
+        }
+        return rows.filter((row) => !row.disableActionButton).reverse();
+    }
+
+    //Filters all the sold batches for all of the user types.
+    fetchPreviousBatches(rows) {
+        return rows.filter((row) => row.productStatus == PRODUCT_STATUSES[7]).reverse();
+    }
+
+    showAddBatchPopUp() {
+        this.setState({
+            showAddBatch: true
+        });
+    }
+
+    hideAddBatchPopUp() {
+        this.setState({
+            showAddBatch: false
+        });
+    }
+
+    showConfirmActionPopUp(action, prodId) {
+        this.setState({
+            showConfirmAction: true,
+            actionState: action,
+            productId: prodId
+        });
+    }
+
+    hideConfirmActionPopUp(action, prodId) {
+        this.setState({
+            showConfirmAction: false
+        });
+    }
+
+    toggleBatchDetailsPopUp(prodRow) {
+        this.setState({
+            showBatchDetails: !this.state.showBatchDetails,
+            productRow: prodRow
+        });
+    }
+
+    showLoader() {
+        this.setState({
+            showLoader: true
+        });
+    }
+
+    hideLoader() {
+        this.setState({
+            showLoader: false
+        });
+    }
+
+    setTransactionSuccess(status) {
+        this.setState({ transactionSuccess: status });
+    }
+
+    closeToastMessage() {
+        this.setState({ transactionSuccess: null });
+    }
+
+    handleTabChange(event, newTabValue) {
+        this.setState({ tabValue: newTabValue })
+    }
+
+    fetchEmptyTableString() {
+        let string = "No batches available yet. ";
+        if (this.props.userType == USER_TYPES[0]) {
+            string += "Try producing a batch.";
+        } else {
+            string = "No batches available for buying yet.";
+        }
+        return string;
+    }
