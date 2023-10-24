@@ -21,7 +21,7 @@ export default class BatchTable extends React.Component {
     state = { 
         page: 0, 
         rowsPerPage: 5,
-      };
+      }; 
 
       handleChangePage = (event, newPage) => {
         this.setState({ page: newPage });
