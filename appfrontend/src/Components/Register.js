@@ -108,13 +108,13 @@ const Register = ({drizzle, drizzleState, isAuthenticated}) => {
                         {/* social media */}
                         <Grid container justifyContent="center">
                                 <Grid item xs={2}>
-                                    <Link className="ModalLink" href="https://github.com/Shira98" target="_blank" >{" "}<GitHubIcon /></Link>
+                                    <Link className="ModalLink" href="" target="_blank" >{" "}<GitHubIcon /></Link>
                                 </Grid>
                                 <Grid item xs={1}> 
-                                    <Link className="ModalLink" href="https://twitter.com/d_praneetha" target="_blank" >{" "}<TwitterIcon /></Link>
+                                    <Link className="ModalLink" href="" target="_blank" >{" "}<TwitterIcon /></Link>
                                 </Grid>
                                 <Grid item xs={2}>
-                                    <Link className="ModalLink" href="https://www.linkedin.com/in/praneetha-d-13996517a/" target="_blank">{"   "}
+                                    <Link className="ModalLink" href="" target="_blank">{"   "}
                                         <LinkedInIcon />
                                     </Link>
                                 </Grid>
