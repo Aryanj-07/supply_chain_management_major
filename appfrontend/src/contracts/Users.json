@@ -1367,12 +1367,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x150ff16fC9CdB8097962A267E234AAB947218350",
-      "transactionHash": "0xfa2925f60472cd40acc2e47b0fa74dd053c718fe8c6fd48dc977e67c6e45e929"
+      "address": "0x53d0231faD59e6E6c5cC67021a5bBA446aAD8307",
+      "transactionHash": "0x7b66eec8ca2178ebde7a46b5736e5921aa7a82b3c9bae53875d08a036a4459df"
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2023-10-17T17:03:12.022Z",
+  "updatedAt": "2023-10-30T08:00:03.632Z",
   "networkType": "ethereum",
   "devdoc": {
     "details": "Stores user addresses for different types of users.",
