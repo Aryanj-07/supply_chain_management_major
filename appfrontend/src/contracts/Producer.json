@@ -1184,12 +1184,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xefA3A2E4E2127fF46Df3f9c7cF7653827e0f3616",
-      "transactionHash": "0x586eef005f15874073280ca91150e248e4664c71eea6bdcf3fd14a7e4e8aa590"
+      "address": "0x62Dfb574970cf065079153cc64eca47372eD200d",
+      "transactionHash": "0x6c14218eec6fb7ab376dbfaf7deb65f146e2b15731c93c33e086cdb2cd274e22"
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2023-10-30T08:00:03.628Z",
+  "updatedAt": "2023-11-03T03:00:44.161Z",
   "networkType": "ethereum",
   "devdoc": {
     "details": "Handles producer functions.",

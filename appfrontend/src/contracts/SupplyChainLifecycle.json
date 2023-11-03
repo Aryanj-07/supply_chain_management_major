@@ -11663,12 +11663,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x616E0C388cCe0228d3c04C3F7fDbaf42B8567946",
-      "transactionHash": "0x601028629696aeeba8669fdf9b492aecba9f292ce23bc7a20bbaf5b2ce6331eb"
+      "address": "0xa01d7F453d194A86aD426e3c1FC42eFc231b9b06",
+      "transactionHash": "0x5d340d7246d90e78c9d4f35c088596465f932a9ec021caa99ce789eec2a33ec0"
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2023-10-30T08:00:03.619Z",
+  "updatedAt": "2023-11-03T03:00:44.145Z",
   "networkType": "ethereum",
   "devdoc": {
     "details": "Deals with product life cycle statuses for all the parties involved.",
