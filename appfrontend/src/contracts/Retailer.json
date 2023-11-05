@@ -1184,12 +1184,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x18C75b80e2958FD9e3a32447547dB331E2C642d1",
-      "transactionHash": "0x124b3d61c40679e46f24ff4e4f736c5baa58d3f070f0037a9c0fbd10d71d4884"
+      "address": "0x78E941bDdb0CFC79D1D462664226aA7f9D1199cA",
+      "transactionHash": "0xeb3fac2af042db53f6a945d7773087deaf74a6d8d6d627b9eb369b0765edaf4c"
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2023-11-03T03:00:44.164Z",
+  "updatedAt": "2023-11-03T05:39:35.405Z",
   "networkType": "ethereum",
   "devdoc": {
     "details": "Handles retailer functions.",
