@@ -1,87 +1,73 @@
+# A Blockchain Based Supply Chain Management System
 
- ## Title: Decentrilized supply chain
+## Dependencies
+Built upon one of the Truffle boxes; [drizzle](https://trufflesuite.com/boxes/), which helps integrate ReactJs with blockchain smart contracts.
 
-## Introduction
+Tools and versions used -
 
-This README file provides an overview of a blockchain application built using a specific technology stack. It covers the functionalities, instructions for local setup and deployment, and detailed explanations of the commands involved.
+- Node v16.15.0
+- npm v8.5.5
+- Ganache client v2.5.4
+- Truffle v5.5.12
+- Solidity v0.5.16
+- Web3.js v1.5.3
 
-## Technology Stack
+Additionally, the frontend is powered by *material-ui* v4.x.
 
-* **Node.js (v16.15.0):** A JavaScript runtime environment used to execute server-side code.
-* **npm (v8.5.5):** The Node Package Manager, used to install and manage Node.js packages and dependencies.
-* **Ganache (v2.5.4):** A personal blockchain simulator, providing a local development environment for testing and interacting with smart contracts.
-* **Truffle (v5.5.12):** A development framework for Ethereum blockchain applications, facilitating smart contract compilation, deployment, testing, and interaction.
-* **Solidity (v0.5.16):** A high-level, object-oriented language specifically designed for writing smart contracts for Ethereum and other blockchains.
-* **Web3.js (v1.5.3):** A JavaScript library used to interact with Ethereum nodes and smart contracts from within web applications.
+## Code Structure
+The ReactJs part of the code goes under `appfrontend`, smart contracts under `contracts`, and migration configurations for these smart contracts under `migrations`.
+Configurations for connecting to local blockchain - Ganache, and compiling the contracts are written in the `truffle-config.js` file.
 
-## Local Setup Prerequisites
+Frontend uses the compiled contracts to interact with them. The compiled contracts are stored in `appfrontend/src/contracts/` (as configured in the `truffle-config.js` file), and are read internally in the `appfrontend/src/drizzleOptions.js` file. The expected contracts and events are configured here.
 
-1. **Ganache:** Download and install Ganache from [https://archive.trufflesuite.com/ganache/](https://archive.trufflesuite.com/ganache/).
-2. **Truffle:** Install Truffle globally using npm:
+Frontend images for current state of the application are stored in the `images/currentstate` folder.
 
-   ```bash
-   npm install -g truffle
-   ```
+To know more about what's part of the frontend code, check out the README file in `appfrontend/`. 
 
-## Local Setup and Deployment
+## Getting Started
 
-1. **Clone the Repository:**
-   If you haven't already, clone this repository to your local machine using Git.
+### Install the Required Dependencies
 
-2. **Install Dependencies:**
-   Navigate to the project directory and install project dependencies using npm:
+- Clone the project and run `npm install` in both the root and `appfrontend` folders. This should install most of the required dependencies. If a dependency conflict between react and material-ui versions pops up, install them forcefully with `npm install --force`.
+- Additionally, install Truffle for managing contracts using `npm install truffle@5.5.12 -g`.
+- Install the Ganache client from Truffle's [official website](https://trufflesuite.com/ganache/).
+- Get the MetaMask browser extension. Create a test network that points to the local Ganache network, import the Ganache accounts into MetaMask and use them to access the application. Without MetaMask, the application takes the first Ganache address available.
 
-   ```bash
-   npm install
-   ```
+### Configure the Project
 
-3. **Compile Smart Contracts:**
-   Compile Solidity code into bytecode that the Ethereum Virtual Machine (EVM) can understand:
+- Open up Ganache and create a new workspace.
+- Update `truffle-config.js` file with the workspace's network details. Connect the project to the workspace by linking the config file in the workspace's settings. 
+- Use Truffle commands `truffle compile` and `truffle migrate` to compile and deploy the smart contracts to the new Ganache workspace. To deploy specifically to the `dev` environment, suffix `--network dev` to the above commands. Similarly, suffix `--network <network_name>` for any custom network names. 
+- If updating any folder names in the frontend code, please note that the path for storing the compiled contracts needs to be modified in the `truffle-config.js` file.
+- The migrations should successfully go through and the workspace should be updated with the contract deployment details.
+ 
+For more commands, please refer to Truffle's [guides and tutorials](https://trufflesuite.com/docs/truffle/).
 
-   ```bash
-   truffle compile
-   ```
+### Get the Frontend Running
+Navigate to the `appfrontend` folder and run `npm start`. This should start the application and open it up in `localhost:3000`. Register with one of the MetaMask accounts as either a producer, distributor, or a retailer. 
 
-4. **Deploy Smart Contracts:**
-   Deploy the compiled contracts to your local Ganache blockchain:
+## Current Functionalities
+Currently uses the first available address to carry out these functionalities and works only for one producer, distributor and retailer user accounts. 
 
-   ```bash
-   truffle migrate
-   ```
+In general, users can -
+- update the status of batches,
+- view their basic profile details,
+- view the batch details after creation,
+- view active and sold (history) batches and their details.
 
-5. **Start Frontend (if applicable):**
-   If your application includes a frontend, navigate to the frontend directory and start the development server:
+Producers can create batches of products and the rest of the users can buy and sell them.
 
-   ```bash
-   cd appfrontend  # Assuming the frontend directory is named "appfrontend"
-   npm install    # Install frontend dependencies (adjust the command if necessary)
-   npm start      # Start the frontend development server (adjust the command if necessary)
-   ```
+## Enhancements
+Please check the repository's project board for ongoing and future enhancements.
 
-## Command Explanations
+## Target State
 
-* **`truffle compile`:**
-   - Searches for Solidity files within the `contracts` directory (or the directory specified in Truffle's configuration).
-   - Compiles each Solidity file into bytecode and an Application Binary Interface (ABI).
-   - Creates a `build` directory (or the directory specified in Truffle's configuration) to store the compiled artifacts.
+### Supply Chain Flow 
+<p>
+ <img src="images/Supply Chain Flow.png" alt="Supply Chain Flow - BSCM" height=400/>
+</p>
 
-* **`truffle migrate`:**
-   - Reads the compiled contracts from the `build` directory.
-   - Attempts to deploy each contract to the connected blockchain network (Ganache in this case).
-   - If successful, updates the deployment history in a file named `migrations.json`.
-
-* **`npm install` (in the frontend directory):**
-   - Downloads and installs the project's frontend dependencies listed in the `package.json` file.
-   - These dependencies allow the frontend to interact with the deployed smart contracts.
-
-* **`npm start` (in the frontend directory):**
-   - Starts the server specified in the `package.json` file (usually a development server like Webpack Dev Server).
-   - This allows you to view and interact with the application in a web browser.
-
-## Additional Notes
-
-- Replace placeholders like `appfrontend` with the actual directory names in your project structure.
-- Adjust commands for frontend development and server startup according to your specific framework or tools.
-- Refer to the official documentation of each tool in the technology stack for more detailed information and advanced usage.
-- Consider including a `.gitignore` file to specify files or folders that should not be committed to version control.
-- Provide clear instructions within the codebase or separate documentation for frontend development and interaction with the smart contracts.
+### User Actions
+<p>
+ <img src="images/User Actions.png" alt="User Actions - BSCM" height=400/>
+</p>
