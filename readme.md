@@ -1,5 +1,5 @@
 
- ## Title:** Blockchain App - Developed by Sudeep Choudhary
+ ## Title: Decentrilized supply chain
 
 ## Introduction
 
