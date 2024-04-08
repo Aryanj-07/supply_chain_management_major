@@ -7,11 +7,19 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ganache": "ganache-cli --networkId $npm_package_config_ganache_networkId  --gasLimit $npm_package_config_ganache_gasLimit --gasPrice $npm_package_config_ganache_gasPrice --mnemonic \"$MNEMONIC\""
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/truffle-box/drizzle-box.git"
+  },
+  "config": {
+    "ganache": {
+      "networkId": 3777,
+      "gasLimit": 6721975,
+      "gasPrice": 20000000000
+    }
   },
   "keywords": [],
   "author": "",
@@ -22,6 +30,10 @@
   "homepage": "https://github.com/truffle-box/drizzle-box#readme",
   "dependencies": {
     "@openzeppelin/contracts": "^2.4.0",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.3.0",
+    "truffle": "^5.11.5"
+  },
+  "devDependencies": {
+    "ganache-cli": "^6.12.2"
   }
 }

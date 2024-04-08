@@ -74,7 +74,7 @@
   "sourceMap": "69:540:2:-;;;168:58;8:9:-1;5:2;;;30:1;27;20:12;5:2;168:58:2;208:10;200:5;;:18;;;;;;;;;;;;;;;;;;69:540;;;;;;",
   "deployedSourceMap": "69:540:2:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;69:540:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;428:178;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;428:178:2;;;;;;;;;;;;;;;;;;;:::i;:::-;;123:36;;;:::i;:::-;;;;;;;;;;;;;;;;;;;96:20;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;309:111;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;309:111:2;;;;;;;;;;;;;;;;;:::i;:::-;;428:178;285:5;;;;;;;;;;;271:19;;:10;:19;;;267:26;;;495:19;528:11;495:45;;551:8;:21;;;573:24;;551:47;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;551:47:2;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;551:47:2;;;;292:1;267:26;428:178;:::o;123:36::-;;;;:::o;96:20::-;;;;;;;;;;;;;:::o;309:111::-;285:5;;;;;;;;;;;271:19;;:10;:19;;;267:26;;;403:9;376:24;:36;;;;267:26;309:111;:::o",
   "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.4.21 <0.9.0;\r\n\r\ncontract Migrations {\r\n    address public owner;\r\n    uint public last_completed_migration;\r\n\r\n    constructor() public {\r\n        owner = msg.sender;\r\n    }\r\n\r\n    modifier restricted() {\r\n        if (msg.sender == owner) _;\r\n    }\r\n\r\n    function setCompleted(uint completed) public restricted {\r\n        last_completed_migration = completed;\r\n    }\r\n\r\n    function upgrade(address new_address) public restricted {\r\n        Migrations upgraded = Migrations(new_address);\r\n        upgraded.setCompleted(last_completed_migration);\r\n    }\r\n}\r\n",
-  "sourcePath": "C:\\Users\\sudeep\\Desktop\\supply_chain_management_major\\contracts\\Migrations.sol",
+  "sourcePath": "D:\\web_development\\supply_chain_management_major\\contracts\\Migrations.sol",
   "ast": {
     "absolutePath": "project:/contracts/Migrations.sol",
     "exportedSymbols": {
@@ -202,7 +202,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 747,
+                        "referencedDeclaration": 705,
                         "src": "208:3:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -286,7 +286,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 747,
+                        "referencedDeclaration": 705,
                         "src": "271:3:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -906,7 +906,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 747,
+                                  "referencedDeclaration": 705,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -997,7 +997,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 747,
+                                  "referencedDeclaration": 705,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -1472,16 +1472,15 @@
     "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
   },
   "networks": {
-    "5777": {
+    "3777": {
       "events": {},
       "links": {},
-      "address": "0xeac8408aF7f78139320142a6a52364e534F9f080",
-      "transactionHash": "0xde283f0830da255ad98462e6fe250a791d44cd60a3151b40b196806afb6a2856"
+      "address": "0x668eD30aAcC7C7c206aAF1327d733226416233E2",
+      "transactionHash": "0x76e1f28aaa26f6df57537db7e7f2a232be7fb094223cd290d9de199a5398f143"
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2023-11-03T05:39:35.409Z",
-  "networkType": "ethereum",
+  "updatedAt": "2024-04-08T09:25:39.348Z",
   "devdoc": {
     "methods": {}
   },

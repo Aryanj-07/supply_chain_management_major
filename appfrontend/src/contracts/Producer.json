@@ -38,7 +38,7 @@
   "sourceMap": "566:931:3:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;566:931:3;;;;;;;",
   "deployedSourceMap": "566:931:3:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;566:931:3;;;;;;;;;;;;;;;;;;;;;;;;1308:186;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;863:367;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;863:367:3;;;;;;;;;;;;;;;;;;;:::i;:::-;;1308:186;1351:4;1450:36;1475:10;1450:9;:24;;:36;;;;:::i;:::-;1443:43;;1308:186;:::o;863:367::-;1008:37;1033:11;1008:9;:24;;:37;;;;:::i;:::-;1007:38;999:93;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1192:30;1210:11;1192:9;:17;;:30;;;;:::i;:::-;863:367;:::o;490:150:6:-;577:4;601;:18;;:31;620:11;601:31;;;;;;;;;;;;;;;;;;;;;;;;;594:38;;490:150;;;;:::o;224:123::-;335:4;301;:18;;:31;320:11;301:31;;;;;;;;;;;;;;;;:38;;;;;;;;;;;;;;;;;;224:123;;:::o",
   "source": "// SPDX-License-Identifier: MIT\r\n// The above line specifies the license for this contract.\r\n\r\n// This pragma statement defines the version of Solidity that the contract is compatible with.\r\n// It allows versions greater than or equal to 0.4.21 and less than 0.9.0.\r\npragma solidity >=0.4.21 <0.9.0;\r\n\r\n// Import the \"Users.sol\" contract to access its functions and data structures.\r\nimport \"./Users.sol\";\r\n\r\n/**\r\n * @title Producer\r\n * @dev Handles producer functions.\r\n */\r\n// This is the main contract named \"Producer,\" which handles producer-related functions.\r\ncontract Producer {\r\n   \r\n    // Use the \"Users\" library for the \"User\" struct and its functions.\r\n    using Users for Users.User;\r\n\r\n    // Create a private instance of the \"Users.User\" struct to manage producers.\r\n    Users.User private producers;\r\n\r\n    // Function to add a new producer.\r\n    function addProducer(address newProducer) public {\r\n        // Check if the producer with the provided address already exists.\r\n        require(!producers.isExistingUser(newProducer), \"Producer with this address already exists!\");\r\n        \r\n        // If the producer does not exist, add them to the list of producers.\r\n        producers.addUser(newProducer);\r\n    }\r\n\r\n    /*\r\n    * Function to check if the caller is a producer.\r\n    */\r\n    function isProducer() public view returns (bool) {\r\n        // Check if the caller's address exists in the list of producers.\r\n        return producers.isExistingUser(msg.sender);\r\n    }\r\n}\r\n",
-  "sourcePath": "C:\\Users\\sudeep\\Desktop\\supply_chain_management_major\\contracts\\Producer.sol",
+  "sourcePath": "D:\\web_development\\supply_chain_management_major\\contracts\\Producer.sol",
   "ast": {
     "absolutePath": "project:/contracts/Producer.sol",
     "exportedSymbols": {
@@ -269,10 +269,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        750,
-                        751
+                        708,
+                        709
                       ],
-                      "referencedDeclaration": 751,
+                      "referencedDeclaration": 709,
                       "src": "999:7:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -440,7 +440,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 747,
+                          "referencedDeclaration": 705,
                           "src": "1475:3:3",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -785,10 +785,10 @@
                                 }
                               ],
                               "overloadedDeclarations": [
-                                750,
-                                751
+                                708,
+                                709
                               ],
-                              "referencedDeclaration": 751,
+                              "referencedDeclaration": 709,
                               "type": "function (bool,string memory) pure",
                               "value": "require"
                             },
@@ -1133,7 +1133,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 747,
+                                  "referencedDeclaration": 705,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -1181,16 +1181,15 @@
     "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
   },
   "networks": {
-    "5777": {
+    "3777": {
       "events": {},
       "links": {},
-      "address": "0xc6aD13A56CEF75419455f133E85e5fdd9C8e64A1",
-      "transactionHash": "0xa73d3443862b89328e9e53b7bdd1cf2cc53527dabcf64067e8a5d367c60a12f9"
+      "address": "0x56F7DC1Cc938d6d6575B68d70d381F9C28C8C7b7",
+      "transactionHash": "0xc46692b962e4ddf1dd2edbc8895ace0bd58cdb092b4c7183b1cf9d4ad493b20a"
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2023-11-03T05:39:35.404Z",
-  "networkType": "ethereum",
+  "updatedAt": "2024-04-08T09:25:39.349Z",
   "devdoc": {
     "details": "Handles producer functions.",
     "methods": {},

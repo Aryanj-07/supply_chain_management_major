@@ -38,7 +38,7 @@
   "sourceMap": "161:420:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;161:420:0;;;;;;;",
   "deployedSourceMap": "161:420:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;161:420:0;;;;;;;;;;;;;;;;;;;;;;;;471:105;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;262:203;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;262:203:0;;;;;;;;;;;;;;;;;;;:::i;:::-;;471:105;514:4;534:36;559:10;534:9;:24;;:36;;;;:::i;:::-;527:43;;471:105;:::o;262:203::-;332:37;357:11;332:9;:24;;:37;;;;:::i;:::-;331:38;323:93;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;427:30;445:11;427:9;:17;;:30;;;;:::i;:::-;262:203;:::o;490:150:6:-;577:4;601;:18;;:31;620:11;601:31;;;;;;;;;;;;;;;;;;;;;;;;;594:38;;490:150;;;;:::o;224:123::-;335:4;301;:18;;:31;320:11;301:31;;;;;;;;;;;;;;;;:38;;;;;;;;;;;;;;;;;;224:123;;:::o",
   "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.4.21 <0.9.0;\r\n\r\nimport \"./Users.sol\";\r\n\r\n/**\r\n * @title Consumer\r\n * @dev Handles consumer functions.\r\n */\r\ncontract Consumer {\r\n    \r\n    using Users for Users.User;\r\n    Users.User private consumers;\r\n\r\n    function addConsumerr(address newConsumer) public {\r\n        require(!consumers.isExistingUser(newConsumer), \"Consumer with this address already exists!\");\r\n        consumers.addUser(newConsumer);\r\n    }\r\n    function isConsumer() public view returns (bool) {\r\n    return consumers.isExistingUser(msg.sender);\r\n  }\r\n\r\n}\r\n",
-  "sourcePath": "C:\\Users\\sudeep\\Desktop\\supply_chain_management_major\\contracts\\Consumer.sol",
+  "sourcePath": "D:\\web_development\\supply_chain_management_major\\contracts\\Consumer.sol",
   "ast": {
     "absolutePath": "project:/contracts/Consumer.sol",
     "exportedSymbols": {
@@ -269,10 +269,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        750,
-                        751
+                        708,
+                        709
                       ],
-                      "referencedDeclaration": 751,
+                      "referencedDeclaration": 709,
                       "src": "323:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -440,7 +440,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 747,
+                          "referencedDeclaration": 705,
                           "src": "559:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -785,10 +785,10 @@
                                 }
                               ],
                               "overloadedDeclarations": [
-                                750,
-                                751
+                                708,
+                                709
                               ],
-                              "referencedDeclaration": 751,
+                              "referencedDeclaration": 709,
                               "type": "function (bool,string memory) pure",
                               "value": "require"
                             },
@@ -1133,7 +1133,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 747,
+                                  "referencedDeclaration": 705,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -1182,7 +1182,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2023-11-03T05:39:29.520Z",
+  "updatedAt": "2024-04-08T09:25:39.280Z",
   "devdoc": {
     "details": "Handles consumer functions.",
     "methods": {},

@@ -7,7 +7,7 @@
   "sourceMap": "124:519:6:-;;132:2:-1;166:7;155:9;146:7;137:37;255:7;249:14;246:1;241:23;235:4;232:33;222:2;;269:9;222:2;293:9;290:1;283:20;323:4;314:7;306:22;347:7;338;331:24",
   "deployedSourceMap": "124:519:6:-;;;;;;;;",
   "source": "pragma solidity >=0.4.21 <0.9.0;\r\n\r\n/**\r\n * @title Users\r\n * @dev Stores user addresses for different types of users.\r\n */\r\nlibrary Users {\r\n\r\n    struct User {\r\n        mapping(address => bool) userAddresses;\r\n    }\r\n\r\n    function addUser(User storage user, address userAddress) internal {\r\n        user.userAddresses[userAddress] = true;\r\n    }\r\n\r\n    function removeUser(User storage user, address userAddress) internal {\r\n        user.userAddresses[userAddress] = false;\r\n    }\r\n\r\n    function isExistingUser(User storage user, address userAddress) internal view returns (bool) {\r\n        return user.userAddresses[userAddress];\r\n    }\r\n}",
-  "sourcePath": "C:\\Users\\sudeep\\Desktop\\supply_chain_management_major\\contracts\\Users.sol",
+  "sourcePath": "D:\\web_development\\supply_chain_management_major\\contracts\\Users.sol",
   "ast": {
     "absolutePath": "project:/contracts/Users.sol",
     "exportedSymbols": {
@@ -1364,16 +1364,15 @@
     "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
   },
   "networks": {
-    "5777": {
+    "3777": {
       "events": {},
       "links": {},
-      "address": "0xfa84A14F10a5D44081f1ecF64BfB8f524d402A85",
-      "transactionHash": "0x8c7d86939bb15667d0bc698e46eab5cd0d5555fc60f4e8c29d64e47ee56b84aa"
+      "address": "0x8b5F2C6C7ef486e5Ea15d2404342F36Ca8910a21",
+      "transactionHash": "0x739ef61f32903c6cbe944eb3d2155fe1bb5f9409593134fce869eb98804b3c6a"
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2023-11-03T05:39:35.406Z",
-  "networkType": "ethereum",
+  "updatedAt": "2024-04-08T09:25:39.382Z",
   "devdoc": {
     "details": "Stores user addresses for different types of users.",
     "methods": {},

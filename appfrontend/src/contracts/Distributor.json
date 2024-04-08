@@ -38,7 +38,7 @@
   "sourceMap": "167:452:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;167:452:1;;;;;;;",
   "deployedSourceMap": "167:452:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;167:452:1;;;;;;;;;;;;;;;;;;;;;;;;505:111;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;274:223;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;274:223:1;;;;;;;;;;;;;;;;;;;:::i;:::-;;505:111;551:4;571:39;599:10;571:12;:27;;:39;;;;:::i;:::-;564:46;;505:111;:::o;274:223::-;349:43;377:14;349:12;:27;;:43;;;;:::i;:::-;348:44;340:102;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;453:36;474:14;453:12;:20;;:36;;;;:::i;:::-;274:223;:::o;490:150:6:-;577:4;601;:18;;:31;620:11;601:31;;;;;;;;;;;;;;;;;;;;;;;;;594:38;;490:150;;;;:::o;224:123::-;335:4;301;:18;;:31;320:11;301:31;;;;;;;;;;;;;;;;:38;;;;;;;;;;;;;;;;;;224:123;;:::o",
   "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.4.21 <0.9.0;\r\n\r\nimport \"./Users.sol\";\r\n\r\n/**\r\n * @title Distributor\r\n * @dev Handles distributor functions.\r\n */\r\ncontract Distributor {\r\n    \r\n    using Users for Users.User;\r\n    Users.User private distributors;\r\n\r\n    function addDistributor(address newDistributor) public {\r\n        require(!distributors.isExistingUser(newDistributor), \"Distributor with this address already exists!\");\r\n        distributors.addUser(newDistributor);\r\n    }\r\n\r\n    function isDistributor() public view returns (bool) {\r\n    return distributors.isExistingUser(msg.sender);\r\n  }\r\n}",
-  "sourcePath": "C:\\Users\\sudeep\\Desktop\\supply_chain_management_major\\contracts\\Distributor.sol",
+  "sourcePath": "D:\\web_development\\supply_chain_management_major\\contracts\\Distributor.sol",
   "ast": {
     "absolutePath": "project:/contracts/Distributor.sol",
     "exportedSymbols": {
@@ -269,10 +269,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        750,
-                        751
+                        708,
+                        709
                       ],
-                      "referencedDeclaration": 751,
+                      "referencedDeclaration": 709,
                       "src": "340:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -440,7 +440,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 747,
+                          "referencedDeclaration": 705,
                           "src": "599:3:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -785,10 +785,10 @@
                                 }
                               ],
                               "overloadedDeclarations": [
-                                750,
-                                751
+                                708,
+                                709
                               ],
-                              "referencedDeclaration": 751,
+                              "referencedDeclaration": 709,
                               "type": "function (bool,string memory) pure",
                               "value": "require"
                             },
@@ -1133,7 +1133,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 747,
+                                  "referencedDeclaration": 705,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -1181,16 +1181,15 @@
     "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
   },
   "networks": {
-    "5777": {
+    "3777": {
       "events": {},
       "links": {},
-      "address": "0x4D0c21B01d928a3a2272EFe0b2861F04f3D5Bdd0",
-      "transactionHash": "0x26aaebdb526077bb6cd28bcf627191c87d9feb5c7e24bb836bdf3d5710fc77cf"
+      "address": "0xB5AE3e2883934457cb593793f034b401867e1372",
+      "transactionHash": "0x8afa7d748bede31962216e92663f897f44b4dac2a5cca3f1aefcc1fbe971970b"
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2023-11-03T05:39:35.402Z",
-  "networkType": "ethereum",
+  "updatedAt": "2024-04-08T09:25:39.328Z",
   "devdoc": {
     "details": "Handles distributor functions.",
     "methods": {},
