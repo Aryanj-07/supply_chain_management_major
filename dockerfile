@@ -16,7 +16,7 @@ COPY . .
 # Expose the port on which your app runs
 EXPOSE 3000
 
-# RUN ./node_modules/.bin/truffle migrate --network dev
+RUN ./node_modules/.bin/truffle migrate --network dev
 
 WORKDIR /usr/src/app/appfrontend
 

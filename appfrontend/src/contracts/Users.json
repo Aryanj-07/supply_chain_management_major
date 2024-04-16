@@ -1372,7 +1372,7 @@
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2024-04-08T09:25:39.382Z",
+  "updatedAt": "2024-04-13T15:21:13.571Z",
   "devdoc": {
     "details": "Stores user addresses for different types of users.",
     "methods": {},

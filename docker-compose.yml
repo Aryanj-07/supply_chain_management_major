@@ -1,3 +1,34 @@
+# version: '3'
+
+# services:
+#   ganache:
+#     image: sudeep162002/scm-ganache:latest
+#     ports:
+#       - "8545:8545"
+#     networks:
+#       - ganache-network
+#     container_name: my-ganache-container
+
+#   frontend:
+#     build: .
+#     ports:
+#       - "3000:3000"
+#     networks:
+#       - ganache-network
+#     container_name: scmf
+#     depends_on:
+#       - ganache
+
+# networks:
+#   ganache-network:
+#     name: ganache-network
+
+
+
+
+
+
+
 version: '3'
 
 services:
