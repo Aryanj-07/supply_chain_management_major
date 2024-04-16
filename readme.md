@@ -26,6 +26,136 @@ To know more about what's part of the frontend code, check out the README file i
 
 ## Getting Started
 
+## Docker setup
+
+
+### Prerequisites
+
+Before getting started, ensure that you have Docker and Docker Compose installed on your system.
+
+### Usage
+
+To run the SCM Web Application, follow these steps:
+
+#### Step 1: initialize Docker Compose (Without Nginx)
+
+Create a `docker-compose.yml` file with the following content:
+
+```yaml
+version: '3'
+
+services:
+  ganache:
+    image: sudeep162002/scm-ganache:latest
+    ports:
+      - "8545:8545"
+    networks:
+      - ganache-network
+    container_name: my-ganache-container
+
+  frontend:
+    image: sudeep162002/scm-frontend:latest
+    ports:
+      - "3000:3000"
+    networks:
+      - ganache-network
+    container_name: scmf
+
+networks:
+  ganache-network:
+    name: ganache-network
+
+```
+
+###  initialize Docker Compose (With Nginx)
+
+Create a `docker-compose.yml` file with the following content:
+
+```version: '3'
+
+services:
+  ganache:
+    image: sudeep162002/scm-ganache:latest
+    ports:
+      - "8545:8545"
+    networks:
+      - ganache-network
+    container_name: my-ganache-container
+
+  frontend: # Single instance of frontend
+    image: sudeep162002/scm-frontend:latest
+    networks:
+      - ganache-network
+    container_name: scmf1
+    depends_on:
+      - ganache
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "3000:80" # Expose Nginx on port 3000
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro # Mount custom Nginx configuration
+    depends_on:
+      - frontend
+    networks:
+      - ganache-network
+
+networks:
+  ganache-network:
+    name: ganache-network
+
+
+```
+
+
+Create a `nginx.conf` file with the following content:
+
+```events {}
+
+http {
+    upstream frontend {
+        server frontend:3000;
+        # server frontend2:3000;
+    }
+
+    server {
+        listen 80;
+
+        location / {
+            proxy_pass http://frontend;
+        }
+    }
+}
+```
+### Step 2:  Run Docker Compose
+
+Navigate to the directory containing the docker-compose.yml file and run the following command: `docker-compose up`
+
+This command will download the Docker images (sudeep162002/scm-frontend:latest and sudeep162002/scm-ganache:latest) if they are not already present on your system and start the containers.
+
+### Step 3:  Migrate contracts
+
+Navigate to any frontend container and run: `./node_modules/.bin/truffle migrate --network dev`
+
+This command will migrate the contract onto the private blockchain network.
+
+### Accessing the Application
+
+Once the containers are up and running, you can access the SCM Web Application:
+
+* Frontend: Visit http://localhost:3000 in your web browser to access the SCM Web Application frontend.
+* MetaMask Integration: To interact with the blockchain, you need to connect MetaMask wallet to the Ganache blockchain running at localhost:8545. Open MetaMask, select "Custom RPC" from the network dropdown, and enter http://localhost:8545 in the "New RPC URL" field. Use `1337 as chain Id` for importing custom network
+
+### Additional Information
+
+* Images Used:
+1. `sudeep162002/scm-frontend:latest`: Frontend image for the SCM Web Application.
+2. `sudeep162002/scm-ganache:latest`: Ganache image for blockchain simulation.
+
+
+## without Docker Setup
+
 ### Install the Required Dependencies
 
 - Clone the project and run `npm install` in both the root and `appfrontend` folders. This should install most of the required dependencies. If a dependency conflict between react and material-ui versions pops up, install them forcefully with `npm install --force`.
